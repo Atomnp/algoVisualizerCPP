@@ -57,8 +57,10 @@ void heapify(std::vector<int>& arr) {
 	}
 }
 void heapSort(std::vector<int>& arr) {
+	sortingInfo::info.hsort.sortedRight = arr.size();
 	heapify(arr);
 	for (int last = arr.size(); last > 0; last--) {
+		sortingInfo::info.hsort.sortedRight = last;
 		if (sortingInfo::stop)break;
 		moveMaxToLast(arr, last);
 	}

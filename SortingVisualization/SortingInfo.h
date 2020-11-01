@@ -32,6 +32,9 @@ struct Qsort3Way {
 	int gt;
 	int p;
 };
+struct HeapSort {
+	int sortedRight;
+};
 enum class SortType
 {
 	BUBBLE_SORT=1,
@@ -53,6 +56,7 @@ public:
 	ShellSort shSort;
 	SelectionSort ssort;
 	Qsort3Way q3sort;
+	HeapSort hsort;
 
 };
 namespace sortingInfo {

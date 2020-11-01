@@ -192,6 +192,10 @@ int main(int, char**)
                             SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
                         }
                         break;
+                case SortType::HEAP_SORT:
+                    sortingInfo::makeRedIf(i >= sortingInfo::info.hsort.sortedRight, renderer);
+
+                    break;
                 case SortType::QSORT3WAY:
 
                     sortingInfo::makeRedIf(
