@@ -27,12 +27,12 @@ void q3sort(std::vector<int>& arr, int low, int high) {
 		sortingInfo::info.q3sort.p = i;
 		if (arr[i] < arr[lt]) {
 			swap(arr, i, lt);
-			std::this_thread::sleep_for(std::chrono::milliseconds(50));
+			std::this_thread::sleep_for(std::chrono::milliseconds(15));
 			i++; lt++;
 		}
 		else if (arr[i] > arr[lt]) {
 			swap(arr, i, gt);
-			std::this_thread::sleep_for(std::chrono::milliseconds(50));
+			std::this_thread::sleep_for(std::chrono::milliseconds(15));
 			gt--;
 		}
 		else {

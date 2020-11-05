@@ -23,13 +23,11 @@
 static const int SCREEN_WIDTH = 1280;
 static const int SCREEN_HEIGHT = 720;
 
-
 static const int CONTROL_MENU_WIDTH = SCREEN_WIDTH;
 static const int CONTROL_MENU_HEIGHT = 150;
 
 static const int SORTING_MENU_WIDTH = 200;
 static const int SORTING_MENU_HEIGHT = SCREEN_HEIGHT - CONTROL_MENU_HEIGHT;
-
 
 // Main code
 int main(int, char**)
@@ -179,8 +177,8 @@ int main(int, char**)
                     }
                     break;
                 case SortType::SHELL_SORT:
-                    sortingInfo::makeRedIf(i%sortingInfo::info.shSort.knuthIndex==0 , renderer);
-                    if (i == sortingInfo::info.isort.currentPointer) {
+                    sortingInfo::makeRedIf(i%sortingInfo::info.shSort.knuthIndex== 0, renderer);
+                    if (i == sortingInfo::info.shSort.currentPointer) {
                         //green color for current index
                         SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
                     }
@@ -250,8 +248,7 @@ int main(int, char**)
         {
             ImGui::SetNextWindowPos(ImVec2(0, SCREEN_HEIGHT-CONTROL_MENU_HEIGHT));
             ImGui::SetNextWindowSize(ImVec2(CONTROL_MENU_WIDTH, CONTROL_MENU_HEIGHT));
-            
-           
+
             ImGui::Begin("Controller",NULL,windowFlags);                          // Create a window called "Hello, world!" and append into it.
             if (ImGui::Button("Start")) {
                 switch (CurrentSort) {
@@ -310,32 +307,25 @@ int main(int, char**)
                             sortingInfo::sortingThread = std::thread(qsort3Way, std::ref(arr));
                         }
                 }            
-
             }
             ImGui::SameLine();
             if (ImGui::Button("RESET") )
-            {
-               
+            {  
                 if (sortingInfo::sortThreadActive) {
                     sortingInfo::stop = true;
                     while (sortingInfo::sortThreadActive) {
                         //do nothing and wait
                         std::cout << "aaa" << std::endl;
-                    }
-                  
-                }
-                
-                arr = generateRandomArray(numberOfItems);
-                
+                    }                 
+                }                
+                arr = generateRandomArray(numberOfItems);           
             }
             //ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
             if (!sortingInfo::sortThreadActive) {
                 ImGui::SliderInt("Number Of Items To Sort", &numberOfItems, 0, 300);
             }
-           
             ImGui::End();
         }
-
         // Rendering     
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -349,7 +339,5 @@ int main(int, char**)
     SDL_GL_DeleteContext(gl_context);
     SDL_DestroyWindow(window);
     SDL_Quit();
-   
-
     return 0;
 }

@@ -2,6 +2,7 @@
 
 struct BubbleSort {
 	int currentPointer;
+	// sortedRight represents index after which the array is in sorted array
 	int sortedRight;
 };
 struct QuickSort {
@@ -20,6 +21,7 @@ struct InsertionSort {
 struct ShellSort {
 	int knuthIndex;
 	int currentPointer;
+	int x;
 };
 struct SelectionSort {
 	int currentPointer;
@@ -66,6 +68,7 @@ namespace sortingInfo {
 	 std::thread sortingThread;
 	 bool sortThreadActive = false;
 	 bool sortingMenu = false;
+	 int speedFactor = 1;
 
 	 void sorted() {
 		printf("finished or closed sorting\n");

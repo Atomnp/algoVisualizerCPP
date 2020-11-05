@@ -19,10 +19,11 @@ void shellSort(std::vector<int>& arr) {
 		//for graphics
 		//sortingInfo::info.shSort.knuthIndex = highest;
 		if (sortingInfo::stop)break;
-
+		sortingInfo::info.shSort.knuthIndex = highest;
 		for (int i = highest; i < arr.size(); i++) {
+			sortingInfo::info.shSort.x = i-highest;
 			//for graphics
-			sortingInfo::info.shSort.knuthIndex = i;
+			
 			int j = i;
 			while (j >= highest and arr[j] < arr[j - highest]) {				
 				swap(arr, j, j - highest);
