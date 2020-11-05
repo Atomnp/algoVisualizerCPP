@@ -1,5 +1,5 @@
 #pragma once
-//most slow implementation of the quicksort algorithm
+//most slow implementation of the quick sort algorithm
 
 #include <iostream>
 #include <vector>

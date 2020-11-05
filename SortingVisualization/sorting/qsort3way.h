@@ -11,12 +11,12 @@
 void q3sort(std::vector<int>& arr, int low, int high) {
 	if (sortingInfo::stop)return;
 	if (high <= low)return;
-	//we have 3 pointers lt,i ,gt
-	//the invarient is as follws
+	//we have 3 pointers lt, i, gt
+	//the invariant is as follows
 	//every thing to the left of lt is less than pivot element
 	//everything to the right of gt is greater than pivot element
 	//every element between lt and i is equal to pivot element
-	//we maintain this invarient while performing partition
+	//we maintain this invariant while performing partition
 
 	int lt = low;
 	int i = low + 1;

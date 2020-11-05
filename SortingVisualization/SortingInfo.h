@@ -72,7 +72,7 @@ namespace sortingInfo {
 
 	 void sorted() {
 		printf("finished or closed sorting\n");
-		sortingThread.detach();
+		sortingThread.join();
 		sortThreadActive = false;
 		/*sortingMenu = true;*/
 	 }
