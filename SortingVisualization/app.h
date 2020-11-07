@@ -43,9 +43,9 @@ public:
 	void run();
 
 	App() {
-	// Setup SDL
-	// (Some versions of SDL before <2.0.10 appears to have performance/stalling issues on a minority of Windows systems,
-	// depending on whether SDL_INIT_GAMECONTROLLER is enabled or disabled.. updating to latest version of SDL is recommended!)
+		// Setup SDL
+		// (Some versions of SDL before <2.0.10 appears to have performance/stalling issues on a minority of Windows systems,
+		// depending on whether SDL_INIT_GAMECONTROLLER is enabled or disabled.. updating to latest version of SDL is recommended!)
 		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
 		{
 			printf("Error: %s\n", SDL_GetError());
@@ -64,9 +64,9 @@ public:
 		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 		SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 		window = SDL_CreateWindow("Greatest Visualizer Of all Time", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, window_flags);
-		
+
 		gl_context = SDL_GL_CreateContext(window);
-		
+
 		SDL_GL_MakeCurrent(window, gl_context);
 		SDL_SetHint(SDL_HINT_RENDER_DRIVER, "opengl");
 		SDL_GL_SetSwapInterval(1); // Enable vsync
