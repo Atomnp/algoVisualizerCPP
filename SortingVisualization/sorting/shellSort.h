@@ -30,7 +30,7 @@ void shellSort(std::vector<int>& arr) {
 				//for graphics
 				if (sortingInfo::stop)break;
 
-				std::this_thread::sleep_for(std::chrono::milliseconds(50));
+				std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 				j = j - highest;
 				//for graphics
 				sortingInfo::info.shSort.currentPointer = j;

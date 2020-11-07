@@ -31,7 +31,7 @@ void merge(std::vector<int>& arr, int high, int low, int mid) {
 			arr[k++] = aux[m++];
 		}
 		if (sortingInfo::stop)return;
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 		
 	}
 }

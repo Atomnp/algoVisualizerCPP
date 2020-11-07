@@ -17,7 +17,7 @@ void insertionSort(std::vector<int>& arr) {
 		while (j > 0 and arr[j] < arr[j - 1]) {
 			sortingInfo::info.isort.currentPointer = j-1;
 			swap(arr, j, j - 1);
-			std::this_thread::sleep_for(std::chrono::milliseconds(50));
+			std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 			j--;
 		}
 	}

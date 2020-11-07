@@ -21,18 +21,19 @@ void q3sort(std::vector<int>& arr, int low, int high) {
 	int lt = low;
 	int i = low + 1;
 	int gt = high;
-	sortingInfo::info.q3sort.lt = lt;
-	sortingInfo::info.q3sort.gt = gt;
+	
 	while (i <= gt) {
+		sortingInfo::info.q3sort.lt = lt;
+		sortingInfo::info.q3sort.gt = gt;
 		sortingInfo::info.q3sort.p = i;
 		if (arr[i] < arr[lt]) {
 			swap(arr, i, lt);
-			std::this_thread::sleep_for(std::chrono::milliseconds(15));
+			std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 			i++; lt++;
 		}
 		else if (arr[i] > arr[lt]) {
 			swap(arr, i, gt);
-			std::this_thread::sleep_for(std::chrono::milliseconds(15));
+			std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 			gt--;
 		}
 		else {

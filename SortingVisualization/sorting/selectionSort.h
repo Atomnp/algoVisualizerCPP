@@ -23,7 +23,7 @@ void selectionSort(std::vector<int>& arr) {
 			//for graphics
 			if (sortingInfo::stop)break;
 
-			std::this_thread::sleep_for(std::chrono::milliseconds(50));
+			std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 
 			if (arr[j] < arr[minIndex])minIndex = j;
 		}

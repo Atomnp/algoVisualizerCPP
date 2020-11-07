@@ -18,7 +18,7 @@ void swim(std::vector<int>& arr, int index) {
 
 		swap(arr, index, (index - 1) / 2);
 		if (sortingInfo::stop)return;
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 		index = (index - 1) / 2;
 	}
 }
@@ -41,7 +41,7 @@ void sink(std::vector<int>& data, int currentIndex) {
 		int maxIn = maxIndex(data, 2 * index + 1, 2 * index + 2);
 		swap(data, index, maxIn);
 		if (sortingInfo::stop)return;
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 		index = maxIn;
 	}
 

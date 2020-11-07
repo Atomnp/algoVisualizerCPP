@@ -33,7 +33,7 @@ int  partition(std::vector<int>& arr, int low, int high) {
 		}
 		if (i >= j) {
 			swap(arr, low, j);
-			std::this_thread::sleep_for(std::chrono::milliseconds(50));
+			std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 			return j;
 
 		}
@@ -41,7 +41,7 @@ int  partition(std::vector<int>& arr, int low, int high) {
 		if (sortingInfo::stop) {
 			return -1;
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 	}
 }
 void qsort(std::vector<int>& arr, int low, int high) {

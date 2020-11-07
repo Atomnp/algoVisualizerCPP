@@ -14,15 +14,18 @@ void countingSort(std::vector<int>& arr,int exp) {
 	std::vector<int >output = std::vector<int>(arr.size());
 
 	for (int i = 0; i < arr.size(); i++) {
+		if (sortingInfo::stop)return;
 		count[arr[i]/exp%10]++;
 	}
 	for (int i = 1; i < 10; i++) {
+		if (sortingInfo::stop)return;
 		count[i] = count[i] + count[i - 1];
 	}
 	//this is reversed to make it stable sort otherwise radix sort with counting sort wont work
 	//try with foreward loop if wanna see how it looks
 	for (int i=arr.size()-1; i >=0; i--) {
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		if (sortingInfo::stop)return;
+		
 		output[count[arr[i] / exp % 10]-- -1] = arr[i];
 		
 	}
@@ -52,7 +55,11 @@ void radixSort(std::vector<int>&arr) {
 	int noOfDigit = countDigit(max);
 	int exp = 1;
 	for (int i = 1; i <= noOfDigit; i++) {
+		
 		countingSort(arr, exp );
+		if (sortingInfo::stop)break;
+		std::this_thread::sleep_for(std::chrono::milliseconds(20*sortingInfo::speed));
+		
 		
 		exp *= 10;
 	}

@@ -19,7 +19,7 @@ void bubbleSort(std::vector<int>& arr) {
 ;		for (int j = 0; j < (arr.size() - i - 1) and !sortingInfo::stop; j++) {
 			if (arr[j] > arr[j + 1]) {
 				swap(arr, j, j + 1);
-				std::this_thread::sleep_for(std::chrono::milliseconds(50));
+				std::this_thread::sleep_for(std::chrono::milliseconds((int)sortingInfo::speed));
 			}
 			
 		}
