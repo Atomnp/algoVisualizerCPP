@@ -2,14 +2,14 @@
 // Main code
 int main()
 {
-    try {
-        App app;
-        app.run();
-    }
-    catch (...) {
-        std::cout << "Something went wrong!" << std::endl;
-    }
-    return 0;
+	try {
+		App app;
+		app.run();
+	}
+	catch (...) {
+		std::cout << "Something went wrong!" << std::endl;
+	}
+	return 0;
 }
 
 void App::run() {
@@ -23,11 +23,12 @@ void App::run() {
 
 	// Main loop
 	bool done = false;
+	float speedFactor = 1;
 	while (!done)
 	{
 		handleEvents(done);
 		clearScreen();
-		
+
 		//Shuffle if the number of elements is changed
 		if (prevNumberOfItems != numberOfItems) {
 			arr = generateRandomArray(numberOfItems);
@@ -37,8 +38,10 @@ void App::run() {
 
 		position = 0;
 		SDL_Rect rect;
+		int radixSpecial = 1;
+		if (sortingInfo::type == SortType::RADIX_SORT )radixSpecial = 987654;
 		for (int i = 0; i < numberOfItems; i++) {
-			getRectangle(rect, position, SCREEN_HEIGHT - 4 * arr[i] - 175, rectWidth, 4 * arr[i]);
+			getRectangle(rect, position, SCREEN_HEIGHT - 4 * arr[i]/radixSpecial - 175, rectWidth, 4 * arr[i]/radixSpecial);
 
 			if (sortingInfo::sortThreadActive) {
 				switch (sortingInfo::type) {
@@ -94,6 +97,10 @@ void App::run() {
 						i <= sortingInfo::info.q3sort.gt,
 						renderer
 					);
+					if (i == sortingInfo::info.q3sort.lt or i== sortingInfo::info.q3sort.gt) {
+						//green color for pivot element
+						SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+					}
 					if (i == sortingInfo::info.q3sort.p) {
 						//green color for pivot element
 						SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
@@ -121,21 +128,21 @@ void App::run() {
 		windowFlags |= ImGuiWindowFlags_NoResize;
 
 		static int CurrentSort = 0;
-		
+
 		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH - SORTING_MENU_WIDTH, 0));
 		ImGui::SetNextWindowSize(ImVec2(SORTING_MENU_WIDTH, SORTING_MENU_HEIGHT));
 
 		ImGui::Begin("SORTING", NULL, windowFlags);
-		const char* items[] = { 
-			"Bubble Sort", 
-			"Merge Sort", 
+		const char* items[] = {
+			"Bubble Sort",
+			"Merge Sort",
 			"Quick Sort",
 			"Insertion Sort",
 			"Shell Sort",
-			"Selection Sort", 
+			"Selection Sort",
 			"Radix Sort",
-			"Heap Sort", 
-			"Quick Sort 3 way Partition" 
+			"Heap Sort",
+			"Quick Sort 3 way Partition"
 		};
 		ImGui::ListBox("", &CurrentSort, items, IM_ARRAYSIZE(items), IM_ARRAYSIZE(items));
 		ImGui::End();
@@ -186,6 +193,9 @@ void App::run() {
 					}
 				case 6:
 					if (!sortingInfo::sortThreadActive) {
+						for (int i = 0; i < arr.size(); i++) {
+							arr[i] = arr[i] * 987654;
+						}
 						sortingInfo::start();
 						sortingInfo::type = SortType::RADIX_SORT;
 						sortingInfo::sortingThread = std::thread(radixSort, std::ref(arr));
@@ -219,12 +229,21 @@ void App::run() {
 				}
 
 				arr = generateRandomArray(numberOfItems);
+				if (sortingInfo::type == SortType::RADIX_SORT) {
+					for (int i = 0; i < arr.size();i++) {
+						arr[i] = arr[i] * 987654;
+					}
+				}
 
 			}
 			//ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
 			if (!sortingInfo::sortThreadActive) {
 				ImGui::SliderInt("Number Of Items To Sort", &numberOfItems, 0, 300);
 			}
+			
+			
+			ImGui::SliderFloat("SPEED in Times", &speedFactor, 0.1f, 10.0f);
+			sortingInfo::speed = (int)(1.0 / speedFactor * 50);
 
 			ImGui::End();
 		}
