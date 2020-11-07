@@ -1,5 +1,5 @@
 #pragma once
-
+#include <atomic>
 struct BubbleSort {
 	int currentPointer;
 	// sortedRight represents index after which the array is in sorted array
@@ -39,7 +39,7 @@ struct HeapSort {
 };
 enum class SortType
 {
-	BUBBLE_SORT=1,
+	BUBBLE_SORT = 1,
 	QUICK_SORT,
 	MERGE_SORT,
 	INSERTION_SORT,
@@ -49,7 +49,7 @@ enum class SortType
 	HEAP_SORT,
 	QSORT3WAY
 };
-union SortingInfo{
+union SortingInfo {
 public:
 	MergeSort mSort;
 	QuickSort qsort;
@@ -62,30 +62,34 @@ public:
 
 };
 namespace sortingInfo {
-	 SortingInfo info;
-	 SortType type;
-	 bool stop = false;
-	 std::thread sortingThread;
-	 bool sortThreadActive = false;
-	 bool sortingMenu = false;
-	 int speedFactor = 1;
+	SortingInfo info;
+	SortType type;
+	bool stop = false;
+	std::thread sortingThread;
+	bool sortThreadActive = false;
+	bool sortingMenu = false;
+	std::atomic<int>speed = 1.0;
 
-	 void sorted() {
+	void sorted() {
+		
 		printf("finished or closed sorting\n");
-		sortingThread.join();
+		if (sortingThread.joinable()) {
+			sortingThread.detach();
+		}
 		sortThreadActive = false;
+		
 		/*sortingMenu = true;*/
-	 }
-	 void start() {
-		 stop = false;
-		 sortingInfo::sortThreadActive = true;
-		 sortingInfo::sortingMenu = false;
-	 }
-	 void makeRedIf(bool conditions, SDL_Renderer*&renderer) {
-		 if (conditions)
-		 {
-			 SDL_SetRenderDrawColor(renderer, 200, 0, 0, 255);
+	}
+	void start() {
+		stop = false;
+		sortingInfo::sortThreadActive = true;
+		sortingInfo::sortingMenu = false;
+	}
+	void makeRedIf(bool conditions, SDL_Renderer*& renderer) {
+		if (conditions)
+		{
+			SDL_SetRenderDrawColor(renderer, 200, 0, 0, 255);
 
-		 }
-	 }
+		}
+	}
 }
