@@ -13,7 +13,7 @@ Contains visuakization of  following sorting algorithms algorithms
 * QSORT3WAY
 
 ##Gif Showing demo of visualizer
-![Gif](https://github.com/AayushNeupane57/algoVisualizerCPP/new/master/SortingVisualization/visualizer.gif)
+![Gif](https://github.com/AayushNeupane57/algoVisualizerCPP/blob/master/visualizer.gif)
 
 
 ### created by
