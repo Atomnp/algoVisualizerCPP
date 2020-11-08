@@ -24,6 +24,7 @@ void App::run() {
 	// Main loop
 	bool done = false;
 	float speedFactor = 1;
+	int radixSpecial = 1;
 	while (!done)
 	{
 		handleEvents(done);
@@ -38,7 +39,7 @@ void App::run() {
 
 		position = 0;
 		SDL_Rect rect;
-		int radixSpecial = 1;
+		
 		if (sortingInfo::type == SortType::RADIX_SORT )radixSpecial = 987654;
 		for (int i = 0; i < numberOfItems; i++) {
 			getRectangle(rect, position, SCREEN_HEIGHT - 4 * arr[i]/radixSpecial - 175, rectWidth, 4 * arr[i]/radixSpecial);
@@ -157,8 +158,8 @@ void App::run() {
 				switch (CurrentSort) {
 				case 0:
 					if (!sortingInfo::sortThreadActive) {
-						sortingInfo::start();
 						sortingInfo::type = SortType::BUBBLE_SORT;
+						sortingInfo::start();
 						sortingInfo::sortingThread = std::thread(bubbleSort, std::ref(arr));
 					}
 				case 1:
@@ -229,11 +230,13 @@ void App::run() {
 				}
 
 				arr = generateRandomArray(numberOfItems);
+				//to fix radix sort issue i can make type to anything i want other than radix sort
+				//bubble sort is chooses arbritiarly
 				if (sortingInfo::type == SortType::RADIX_SORT) {
-					for (int i = 0; i < arr.size();i++) {
-						arr[i] = arr[i] * 987654;
-					}
+					sortingInfo::type = SortType::BUBBLE_SORT;
+					radixSpecial = 1;
 				}
+
 
 			}
 			//ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
