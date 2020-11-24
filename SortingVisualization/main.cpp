@@ -33,7 +33,7 @@ void App::run() {
 		//Shuffle if the number of elements is changed
 		if (prevNumberOfItems != numberOfItems) {
 			arr = generateRandomArray(numberOfItems);
-			rectWidth = (SCREEN_WIDTH - 250) / (numberOfItems + gap) - gap;
+			rectWidth = (SCREEN_WIDTH - SORTING_MENU_WIDTH) / (numberOfItems + gap) - gap;
 			prevNumberOfItems = numberOfItems;
 		}
 
