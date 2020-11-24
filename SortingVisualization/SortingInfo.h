@@ -68,7 +68,7 @@ namespace sortingInfo {
 	std::thread sortingThread;
 	bool sortThreadActive = false;
 	bool sortingMenu = false;
-	std::atomic<int>speed = 1.0;
+	std::atomic<int>speed(1.0);
 
 	void sorted() {
 		

@@ -19,6 +19,7 @@ void App::run() {
 	std::vector<int>arr = generateRandomArray(numberOfItems);
 	const int gap = 2;
 	int rectWidth = (SCREEN_WIDTH - SORTING_MENU_WIDTH) / (numberOfItems + gap) - gap;
+	int rectWidth = (SCREEN_WIDTH - SORTING_MENU_WIDTH) / (numberOfItems);
 	int position = 0;
 
 	// Main loop
@@ -213,7 +214,6 @@ void App::run() {
 						sortingInfo::sortingThread = std::thread(qsort3Way, std::ref(arr));
 					}
 				}
-
 			}
 			ImGui::SameLine();
 			if (ImGui::Button("RESET"))
@@ -225,16 +225,13 @@ void App::run() {
 						//do nothing and wait
 						std::cout << "aaa" << std::endl;
 					}
-
 				}
-
 				arr = generateRandomArray(numberOfItems);
 				if (sortingInfo::type == SortType::RADIX_SORT) {
 					for (int i = 0; i < arr.size();i++) {
 						arr[i] = arr[i] * 987654;
 					}
 				}
-
 			}
 			//ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
 			if (!sortingInfo::sortThreadActive) {
