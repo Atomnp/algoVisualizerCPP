@@ -19,7 +19,6 @@ void App::run() {
 	std::vector<int>arr = generateRandomArray(numberOfItems);
 	const int gap = 2;
 	int rectWidth = (SCREEN_WIDTH - SORTING_MENU_WIDTH) / (numberOfItems + gap) - gap;
-	int rectWidth = (SCREEN_WIDTH - SORTING_MENU_WIDTH) / (numberOfItems);
 	int position = 0;
 
 	// Main loop
