@@ -28,14 +28,18 @@ int  partition(std::vector<int>& arr, int low, int high) {
 			i++;
 			sortingInfo::info.qsort.ptr1 = i;
 			if(sortingInfo::teachingMode)std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
-
+			if (sortingInfo::stop) {
+				break;
+			}
 		}
 		while (arr[j] > pivotElm) {
 			if (j == low)break;
 			j--;
 			sortingInfo::info.qsort.ptr2 = j;
 			if(sortingInfo::teachingMode)std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
-
+			if (sortingInfo::stop) {
+				break;
+			}
 		}		
 		
 		
