@@ -3,28 +3,26 @@ project (SortingViualizer)
 
 set(CMAKE_CXX_STANDARD 14)
 
-#to setup sdl, chek cmake_modules dir
+#to setup sdl, chek cmake_modules di
+#that filein cmake just search about libraries in probable location 
+#and set variables so that we can work easily here
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake_modules")
 
 find_package(SDL2 REQUIRED)
-# look for glew relative to the "GLEW" environment variable path
-# Need to set GLEW_INCLUDE_DIR and GLEW_LIBRARY_RELEASE
-IF(NOT(APPLE))
-  set(GLEW_INCLUDE_DIR $ENV{GLEW}/include)
-  set(GLEW_LIBRARY_RELEASE $ENV{GLEW}/lib/Release/Win32/glew32.lib)
-  find_package(GLEW REQUIRED)
-ENDIF()
-
+find_package(GLEW REQUIRED)
 find_package(OpenGL REQUIRED)
+
+
 set(INCLUDE_DIRECTORIES
   ${SDL2_INCLUDE_DIR}
-  ${CMAKE_SOURCE_DIR}/SortingVisualization/vendors/imgui)
-set(LINK_LIBRARIES ${OPENGL_LIBRARIES} ${SDL2_LIBRARY})
+  ${CMAKE_SOURCE_DIR}/SortingVisualization/vendors/imgui
+  ${GLEW_INCLUDE_DIRS})
 
-IF(NOT(APPLE))
-	list(APPEND INCLUDE_DIRECTORIES ${GLEW_INCLUDE_DIRS})
-  list(APPEND LINK_LIBRARIES ${GLEW_LIBRARIES})
-ENDIF()
+  set(LINK_LIBRARIES 
+    ${OPENGL_LIBRARIES} 
+    ${SDL2_LIBRARY}
+    ${GLEW_LIBRARIES}
+    )
 
 include_directories(${INCLUDE_DIRECTORIES})
 
