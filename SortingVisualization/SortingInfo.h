@@ -9,6 +9,8 @@ struct QuickSort {
 	int leftIndex;
 	int rightIndex;
 	int pivotIndex;
+	int ptr1;
+	int ptr2;
 };
 struct MergeSort {
 	int left;
@@ -68,6 +70,7 @@ namespace sortingInfo {
 	std::thread sortingThread;
 	bool sortThreadActive = false;
 	bool sortingMenu = false;
+	bool teachingMode;
 	std::atomic<int>speed(1.0);
 
 	void sorted() {

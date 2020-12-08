@@ -55,6 +55,12 @@ void App::run() {
 						i <= sortingInfo::info.qsort.rightIndex,
 						renderer
 					);
+					if(i==sortingInfo::info.qsort.ptr1 ){
+						SDL_SetRenderDrawColor(renderer, 200, 200, 0, 255);
+					}
+					if(i==sortingInfo::info.qsort.ptr2){
+						SDL_SetRenderDrawColor(renderer, 200, 105, 182, 255);
+					}
 					if (i == sortingInfo::info.qsort.pivotIndex) {
 						//green color for pivot element
 						SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
@@ -146,6 +152,7 @@ void App::run() {
 			"Quick Sort 3 way Partition"
 		};
 		ImGui::ListBox("", &CurrentSort, items, IM_ARRAYSIZE(items), IM_ARRAYSIZE(items));
+		ImGui::Checkbox("Teaching Mode", &sortingInfo::teachingMode);
 		ImGui::End();
 
 		//ImGui UI
@@ -240,7 +247,7 @@ void App::run() {
 			}
 			
 			
-			ImGui::SliderFloat("SPEED in Times", &speedFactor, 0.1f, 10.0f);
+			ImGui::SliderFloat("SPEED in Times", &speedFactor, 0.01f, 10.0f);
 			sortingInfo::speed = (int)(1.0 / speedFactor * 50);
 
 			ImGui::End();

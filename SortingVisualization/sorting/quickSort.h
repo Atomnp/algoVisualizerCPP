@@ -20,17 +20,25 @@ int  partition(std::vector<int>& arr, int low, int high) {
 	sortingInfo::info.qsort.leftIndex = i;
 	sortingInfo::info.qsort.rightIndex = j;
 	sortingInfo::info.qsort.pivotIndex = low;
+	sortingInfo::info.qsort.ptr1 = i;
+	sortingInfo::info.qsort.ptr2 = j;
 	while (true) {
 		while (arr[i] < pivotElm) {
 			if (i == high) break;
 			i++;
+			sortingInfo::info.qsort.ptr1 = i;
+			if(sortingInfo::teachingMode)std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 
 		}
 		while (arr[j] > pivotElm) {
 			if (j == low)break;
 			j--;
+			sortingInfo::info.qsort.ptr2 = j;
+			if(sortingInfo::teachingMode)std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
 
-		}
+		}		
+		
+		
 		if (i >= j) {
 			swap(arr, low, j);
 			std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
