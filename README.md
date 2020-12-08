@@ -26,3 +26,9 @@ Contains visualization of  following sorting algorithms algorithms
 * it will say dll are missing
 * then copy the dlls from vendor/dll directory to the directry where your executables are created and run the project again
 * now the project will run sucessfuly 
+
+## To run project in Linux(Tested for Ubuntu) following step can be followed(Cmake Required)
+* clone or download project from github
+* from directory containing rebuild.sh run this script with ./rebuild.sh"
+* To run the program again run script with "./run.sh"
+* Dependencies needs to be installed manually, you can view dependencies in CmakeLists.txt
