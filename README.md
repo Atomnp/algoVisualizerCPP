@@ -17,8 +17,8 @@ Contains visualization of  following sorting algorithms algorithms
 
 
 ### created by
-* Aayush lamichhane
-* Aayush neupane
+* Aayush Lamichhane
+* Aayush Neupane
 ## To run project in Visual Studio following step may be followed
 * clone or download project from github
 * open in visual studio 2019(prefered)

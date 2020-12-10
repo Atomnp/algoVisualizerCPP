@@ -230,7 +230,7 @@ void App::run() {
 					sortingInfo::stop = true;
 					while (sortingInfo::sortThreadActive) {
 						//do nothing and wait
-						std::cout << "aaa" << std::endl;
+						std::cout << "Waiting" << std::endl;
 					}
 				}
 				arr = generateRandomArray(numberOfItems);

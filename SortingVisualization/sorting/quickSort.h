@@ -42,7 +42,6 @@ int  partition(std::vector<int>& arr, int low, int high) {
 			}
 		}		
 		
-		
 		if (i >= j) {
 			swap(arr, low, j);
 			std::this_thread::sleep_for(std::chrono::milliseconds(sortingInfo::speed));
