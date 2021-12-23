@@ -29,6 +29,7 @@ Contains visualization of  following sorting algorithms algorithms
 
 ## To run project in Linux(Tested for Ubuntu) following step can be followed(Cmake Required)
 * clone or download project from github
-* from directory containing rebuild.sh run this script with ./rebuild.sh"
+* Instal sdl2 and GLEW from respective repositories
+* from directory containing build.sh run this script with ./build.sh"
 * To run the program again run script with "./run.sh"
-* Dependencies needs to be installed manually, you can view dependencies in CmakeLists.txt
+
